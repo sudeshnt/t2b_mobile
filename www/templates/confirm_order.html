@@ -1,0 +1,88 @@
+<ion-view>
+  <!--<ion-header-bar class="bar-stable">-->
+    <!--<div style="position: absolute; left: 5px;">-->
+      <!--<a class="button button-icon row"  ng-click="myGoBack()">-->
+        <!--<i class="ion-android-arrow-back" style="font-size: 30px;"></i>-->
+      <!--</a>-->
+    <!--</div>-->
+    <!--<h3 class="side-margin-auto">Touch2Buy</h3>-->
+    <!--<div style="position: absolute; right: 5px;">-->
+      <!--<a class="button button-icon row"  ng-click="myGoBack()">-->
+        <!--<i class="ion-ios-search-strong" style="font-size: 30px;"></i>-->
+      <!--</a>-->
+    <!--</div>-->
+  <!--</ion-header-bar>-->
+  <ion-content style="margin-top: 20px">
+    <div class="row bs-wizard" style="border-bottom:0;">
+      <div class="col bs-wizard-step complete">
+        <div class="align-center bs-wizard-stepnum success-step">Checkout</div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a href="#" class="bs-wizard-dot"></a>
+        <div class="bs-wizard-info align-center">
+        </div>
+      </div>
+      <div class="col bs-wizard-step complete"><!-- complete -->
+        <div class="align-center bs-wizard-stepnum success-step">Delivery</div>
+        <div class="progress" style="left:50%; width:100%; "><div class="progress-bar"></div></div>
+        <a href="#" class="bs-wizard-dot-complete"></a>
+        <div class="bs-wizard-info align-center">
+        </div>
+      </div>
+      <div class="col bs-wizard-step complete"><!-- active -->
+        <div class="align-center bs-wizard-stepnum success-step">Confirm</div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a href="#" class="bs-wizard-dot"></a>
+        <div class="bs-wizard-info align-center">
+        </div>
+      </div>
+    </div>
+    <div class="row" style=" margin-top: -5px;">
+      <span class="side-margin-auto">
+        <img ng-src="img/restaurants/green_foods_logo.png" style="height:40px; vertical-align: middle; border-radius: 50%;">
+        <span> Green Foods</span>
+      </span>
+    </div>
+    <h5 class="align-center success-step" style="margin-top:3px; margin-bottom:3px">order placed successfully !</h5>
+
+    <h3 style="font-size: 15px; text-align: center; padding-bottom: 0px; margin-top: 5px">Order Summary</h3>
+
+    <md-whiteframe class="md-whiteframe-2dp " flex-sm="100" flex-gt-sm="100" flex-gt-md="100" layout layout-align="center center" style="display: block; margin:8px 15px 8px 15px; padding: 10px 0px;">
+      <div class="cart-item item-text-wrap">
+        <div class="row zero-padding" ng-repeat="orderItem in confirmedCart.orders">
+          <div class="col col-25 zero-padding" style="max-width: 75px;">
+            <div>
+              <img ng-src="{{orderItem.imageUrl}}" style="height:50px; width:50px;">
+            </div>
+          </div>
+          <div class="col zero-padding">
+            <div class="row zero-padding">
+              <div class="col zero-padding">
+                <h3 style="font-size: 15px; text-align: left;">{{orderItem.itemName}}</h3>
+              </div>
+              <div class="col.col-30 zero-padding">
+                Rs {{orderItem.selectedSize.finalPrice*orderItem.selectedSize.qty}}.00
+              </div>
+            </div>
+            <div class="row zero-padding">
+              <span style="font-size: 13px;"> Rs {{orderItem.selectedSize.finalPrice}} x {{orderItem.selectedSize.qty}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--<hr style="margin-left: 10px; margin-right: 10px;">-->
+      <hr style="margin-left: 10px; margin-right: 10px;">
+      <div class=" item-text-wrap">
+        <div class="row zero-padding">
+          <div class="col align-right">
+            <h5 style="margin:0px 10px 0px 0px;" >Total Amount: </h5>
+          </div>
+          <div class="col col-25 total-col" >
+            <h5 style="margin:5px 10px 0px 0px;">Rs. {{confirmedCart.totalAmount}}.00</h5>
+          </div>
+        </div>
+      </div>
+    </md-whiteframe>
+    <h5 class="align-center">Thank you. Visit us again!</h5>
+
+  </ion-content>
+</ion-view>

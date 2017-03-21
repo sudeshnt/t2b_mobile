@@ -1,0 +1,30 @@
+<ion-view>
+  <ion-content style="padding-top:40px;">
+    <div style="text-align: center; padding:15px 0px;"><img class="full-width" src="img/logo.png" style="max-width: 230px;"></div>
+    <form  class="form-horizontal" role="form" name="userRegistrationForm">
+        <md-input-container class="md-icon-float md-block" style="margin-top: 20px;">
+          <!-- Use floating label instead of placeholder -->
+          <label>First Name</label>
+          <md-icon class="name ion-person align-right md-primary"></md-icon>
+          <input ng-model="user.firstName" type="text" style="width: 90%;" name="firstName" required>
+        </md-input-container>
+        <md-input-container class="md-icon-float md-block" style="margin-top: 20px;">
+          <label>Phone Number</label>
+          <md-icon class="name ion-android-call align-right md-primary"></md-icon>
+          <input ng-model="user.phoneNumber" type="tel" style="width: 90%;" name="phoneNumber" required>
+        </md-input-container>
+        <md-input-container class="md-icon-float md-block" style="margin-top: 20px;margin-bottom:5px;">
+          <md-icon class="name ion-android-lock align-right md-primary"></md-icon>
+          <input ng-model="user.password" type="{{type}}" placeholder="Password" style="width: 90%;" name="password" required>
+        </md-input-container>
+        <md-input-container class="md-icon-float md-block" style="padding-left: 36px;">
+          <i class="ion-eye"  style="font-size: 22px;" ng-class="type=='text' ? 'eye-lit' : 'eye-dull'" ng-click="toggleShowHide();"> <span style="font-size: 10px; vertical-align: top; color: black;"> Show Password</span></i>
+        </md-input-container>
+        <div class="error" style="margin:1%" ng-if="errorMessage">{{errorMessage}}</div>
+        <md-input-container class="md-icon-float md-block align-center" style="margin-top: 4px;">
+          <md-button class="md-raised custom-height-button md-primary" style="height: 30px; line-height: 30px; font-size: 13px; width: 90%;"  ng-click="createUser(userRegistrationForm.$valid)">Register</md-button>
+        </md-input-container>
+    </form>
+  </ion-content>
+</ion-view>
+

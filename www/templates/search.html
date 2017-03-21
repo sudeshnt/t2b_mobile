@@ -1,0 +1,36 @@
+<ion-view>
+  <!--<ion-header-bar class="bar-stable">-->
+    <!--<div style="position: absolute; left: 5px;">-->
+      <!--<a class="button button-icon row"  ng-click="myGoBack()">-->
+        <!--<i class="ion-android-arrow-back" style="font-size: 30px;"></i>-->
+      <!--</a>-->
+    <!--</div>-->
+    <!--<h3 class="side-margin-auto">Touch2Buy</h3>-->
+    <!--<div style="position: absolute; right: 5px;">-->
+      <!--<a class="button button-icon row"  ng-click="myGoBack()">-->
+        <!--<i class="ion-ios-search-strong" style="font-size: 30px;"></i>-->
+      <!--</a>-->
+    <!--</div>-->
+  <!--</ion-header-bar>-->
+  <ion-content style="margin: 10px 10px 0px 10px;">
+    <md-autocomplete
+      ng-disabled="isDisabled"
+      md-no-cache="noCache"
+      md-selected-item="selectedItem"
+      md-search-text-change="searchTextChange(searchText)"
+      md-search-text="searchText"
+      md-selected-item-change="selectedItemChange(item)"
+      md-items="item in querySearch(searchText)"
+      md-item-text="item.display"
+      md-min-length="3"
+      placeholder="What do you want to eat?">
+      <md-item-template>
+        <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.display}}</span>
+      </md-item-template>
+      <md-not-found>
+        No states matching "{{searchText}}" were found.
+        <a ng-click="newState(searchText)">Create a new one!</a>
+      </md-not-found>
+    </md-autocomplete>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,71 @@
+<md-bottom-sheet class="md-list bottom-sheet" ng-controller="initialController" style="padding: 8px 8px 88px;">
+
+  <div class="row zero-padding">
+    <div class="col align-left zero-padding">
+      <img ng-src="img/empty_cart.png" class="full-width" style="max-width: 150px" ng-if="cart.orders.length==0">
+
+      <div class="cart-item item-text-wrap" ng-if="cart.orders.length>0">
+        <div class="row zero-padding" ng-repeat="cartItem in cart.orders" style="margin-bottom: 5px;">
+          <div class="col col-25 zero-padding" style="max-width: 50px;">
+            <div>
+              <img ng-src="{{cartItem.imageUrl}}" style="height:56px; width:42px;">
+            </div>
+          </div>
+          <div class="col zero-padding">
+            <div class="row zero-padding">
+              <div class="col zero-padding">
+                <h3 style="font-size: 12px; text-align: left;">{{cartItem.selectedSize.name}}</span></h3>
+              </div>
+              <div class="col.col-30 zero-padding align-right" style="min-width:60px;">
+                <span style="font-size: 12px;">Rs {{cartItem.selectedSize.finalPrice*cartItem.selectedSize.qty}}.00</span>
+              </div>
+            </div>
+            <div class="row zero-padding" >
+              <span style="font-size: 12px;"> Rs {{cartItem.selectedSize.finalPrice}} x {{cartItem.selectedSize.qty}}
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class=" item-text-wrap">
+          <div class="row zero-padding">
+            <div class="col align-right">
+              <h5 style="margin: 0px 10px 0px 0px; font-size: 12px;">Total Amount: </h5>
+            </div>
+            <div class="col col-25 total-col" style="padding-right: 2px;">
+              <span style="font-size: 12px;"> Rs.  {{ getTotal() }}.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-20 align-right zero-padding" style="min-width: 100px;">
+      <a style="position: absolute; right: 15px;" ng-click="closeCart()"><i class="ion-android-close"> </i></a>
+      <br>
+      <span style="font-size:15px;" ng-if="cart.orders.length==0">Your Cart is Empty !</span>
+      <div style="position: absolute; bottom:85px;" ng-if="cart.orders.length>0">
+        <!--<a class="button icon custom-height-button clear-cart-button" ng-click="checkout()">-->
+          <!--clear cart <i class="ion-trash-b"></i>-->
+        <!--</a>-->
+        <md-input-container class="md-icon-float md-block align-right" >
+          <md-button class="md-raised custom-height-button clear-cart-button zero-margin" ng-click="clearCart()">
+            Clear Cart <i class="ion-trash-b"></i>
+          </md-button>
+        </md-input-container>
+        <!--<a class="button icon custom-height-button checkout-button" >-->
+          <!--checkout <i class="ion-log-in"></i>-->
+        <!--</a>-->
+        <md-input-container class="md-icon-float md-block align-right" >
+          <md-button class="md-raised custom-height-button checkout-button zero-margin" ng-click="checkout()" style="color: white; background-color: #4caf50;">
+            Continue <i class="ion-log-in"></i>
+          </md-button>
+        </md-input-container>
+      </div>
+    </div>
+  </div>
+  <!--<md-subheader ng-cloak>Filter</md-subheader>-->
+  <!--<md-list ng-cloak style="overflow-y: scroll">-->
+    <!---->
+      <!---->
+    <!--</md-list-item>-->
+  <!--</md-list>-->
+</md-bottom-sheet>

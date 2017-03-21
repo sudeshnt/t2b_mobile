@@ -1,0 +1,15 @@
+---Plugins---
+
+Before each plugin you must check if your device has fully loaded,
+and if the plugins are available using a native cordova event called deviceready
+
+document.addEventListener("deviceready", function () {
+  $cordovaPlugin.someFunction().then(success, error);
+}, false);
+
+* added cordovaToast plugin
+* this time picker might be helpful
+https://github.com/katemihalikova/ion-datetime-picker
+
+binding html content to divs
+http://www.saintsatplay.com/blog/2015/02/parsing-html-data-from-an-array-inside-an-angularjs-view#.WHS92ZpEnIU

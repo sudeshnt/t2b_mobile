@@ -1,0 +1,152 @@
+<ion-view cache-view="false">
+  <!--<ion-header-bar class="bar-stable">-->
+    <!--<div style="position: absolute; left: 5px;">-->
+      <!--<a class="button button-icon row"  ng-click="myGoBack()">-->
+        <!--<i class="ion-android-arrow-back" style="font-size: 30px;"></i>-->
+      <!--</a>-->
+    <!--</div>-->
+    <!--<h3 class="side-margin-auto">Touch2Buy</h3>-->
+    <!--<div style="position: absolute; right: 5px;">-->
+      <!--<a class="button button-icon row"  ng-click="myGoBack()">-->
+        <!--<i class="ion-ios-search-strong" style="font-size: 30px;"></i>-->
+      <!--</a>-->
+    <!--</div>-->
+  <!--</ion-header-bar>-->
+  <ion-content style="margin-top: 20px">
+    <div class="row bs-wizard" style="border-bottom:0;">
+      <div class="col bs-wizard-step disabled">
+        <div class="align-center bs-wizard-stepnum success-step">Checkout</div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a href="#" class="bs-wizard-dot-complete"></a>
+        <div class="bs-wizard-info align-center">
+        </div>
+      </div>
+      <div class="col bs-wizard-step disabled"><!-- complete -->
+        <div class="align-center bs-wizard-stepnum pending-step">Delivery</div>
+        <div class="progress" style="left:50%; width:100%; "><div class="progress-bar"></div></div>
+        <a href="#" class="bs-wizard-dot bs-wizard-dot-disable"></a>
+        <div class="bs-wizard-info align-center">
+        </div>
+      </div>
+      <div class="col bs-wizard-step disabled"><!-- active -->
+        <div class="align-center bs-wizard-stepnum pending-step">Confirm</div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a href="#" class="bs-wizard-dot"></a>
+        <div class="bs-wizard-info align-center">
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="row zero-padding">
+        <a style="margin-right: auto; margin-left:10px" ng-click="backToRestaurant()"><i class="ion-android-arrow-back orange"> Continue Shopping</i></a>
+        <a style="margin-left: auto; margin-right:10px" ng-click="resetCart()"><i class="primary"> Reset</i></a>
+      </div>
+      <!--{{currentCart.orders}}-->
+      <md-whiteframe class="md-whiteframe-2dp small-margin" flex-sm="100" flex-gt-sm="100" flex-gt-md="100" layout layout-align="center center" style="    display: list-item;">
+        <div ng-repeat="item in currentCart.orders" class="cart-item item-text-wrap">
+            <div class="row zero-padding">
+              <div class="col col-25 zero-padding" style="max-width: 65px;">
+                <div>
+                  <img ng-src="{{item.imageUrl}}" style="height:65px; width:55px;">
+                </div>
+              </div>
+              <div class="col zero-padding">
+                <div class="row zero-padding" style="min-height: 35px;">
+                  <div class="col zero-padding">
+                    <h3 style="font-size: 14px; text-align: left;" class="zero-margin">{{item.selectedSize.name}}<span style="font-size: 10px;" ng-show="!item.editEnabled">({{item.selectedSize.sizeName}})</span> </h3>
+                  </div>
+                  <div class="col.col-30 zero-padding align-right" style="min-width: 90px;">
+                    <!--Rs {{item.itemTotal}}.00-->
+                    <span style="font-size: 10px;" ng-show="item.editEnabled"> Rs {{item.selectedSize.finalPrice}} x {{item.selectedSize.qty}}<br></span>
+                    Rs {{item.selectedSize.finalPrice*item.selectedSize.qty}}.00
+                  </div>
+                </div>
+                <div class="row zero-padding">
+                  <div style="display: inherit" ng-show="item.editEnabled">
+                    <div class="col zero-padding" style="max-width: 65px;">
+                      <md-input-container style="margin: 16px 0px 0px 0px; font-size: smaller ">
+                        <label>size</label>
+                        <md-select ng-model="item.selectedSize">
+                          <md-option ng-repeat="size in item.products" ng-value="size">
+                            {{size.sizeName}}
+                          </md-option>
+                        </md-select>
+                      </md-input-container>
+                    </div>
+                    <div class="col">
+                      <div class="flex_row_checkout">
+                        <a class="button button-clear icon ion-minus-circled grey-content" ng-click="sub(item)"></a>
+                        <!--<a class="button button-clear add-remove-buttons icon black-content" ng-click="sub(item)">-->
+                          <!--<i class="smaller-letters ion-minus-round"></i>-->
+                        <!--</a>-->
+                        <span style="line-height: 46px;">{{item.selectedSize.qty}}</span>
+                        <a class="button button-clear icon ion-plus-circled grey-content" ng-click="add(item)"></a>
+                        <!--<a class="button button-clear add-remove-buttons icon black-content" ng-click="add(item)">-->
+                          <!--<i class="smaller-letters ion-plus-round"></i>-->
+                        <!--</a>-->
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: inherit" ng-show="!item.editEnabled">
+                    <span style="font-size: 13px; padding-top: 15px;"> Rs {{item.selectedSize.finalPrice}} x {{item.selectedSize.qty}} (qty)</span>
+                  </div>
+                  <div class="col align-right"  ng-hide="item.editEnabled">
+                    <a class="edit-button"><i class="ion-edit" ng-click="toggleEdit(item)" style="font-size: 15px;"> edit</i></a>
+                  </div>
+                  <div class="col align-right" style="max-width: 65px;">
+                    <a class="remove-button" ng-click="deleteItemFromCart(item)"><i class="ion-trash-b" style="font-size: 20px;"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <hr style="margin-left: 10px; margin-right: 10px;">
+          </div>
+          <!--<hr style="margin-left: 10px; margin-right: 10px;">-->
+          <div class=" item-text-wrap">
+            <div class="row zero-padding">
+              <h5 style="margin: 15px 12px 15px auto;">Total Amount: Rs. {{calculateCartFullAmount()}} {{currentCart.totalAmount}}</h5>
+            </div>
+          </div>
+      </md-whiteframe>
+      <md-input-container class="md-icon-float md-block align-right" >
+        <md-button class="md-raised custom-height-button" ng-if="loginStatus" ng-click="continueToDelivery()" style="height: 30px; line-height: 25px; font-size: 10px; width: 64%; color: white; background-color: #4caf50;">Continue <i class="ion-arrow-right-c"></i></md-button>
+      </md-input-container>
+      <ion-list class="align-center" ng-if="!loginStatus">
+        <ion-item class="item-accordion zero-padding" ng-show="isMemberLogin" style="padding: 10px;">
+          <div class="row zero-padding">
+            <form  class="form-horizontal side-margin-auto" style="width: 75%;" role="form" name="userLoginForm" ng-if="!forgotPassword">
+              <md-input-container class="md-icon-float md-block" style="margin-top: 15px;">
+                <label class="align-left">Phone Number / Email</label>
+                <md-icon class="name ion-person align-right md-primary"></md-icon>
+                <input ng-model="user.userName" type="text" style="width: 90%;" name="userName" required>
+              </md-input-container>
+              <md-input-container class="md-icon-float md-block" style="margin-top: 15px;">
+                <label class="align-left">Password</label>
+                <md-icon class="name ion-android-lock align-right md-primary"></md-icon>
+                <input ng-model="user.password" type="password"  style="width: 90%;" name="password" required>
+              </md-input-container>
+              <div class="error" style="margin:1%" ng-if="errorMessage">{{errorMessage}}</div>
+              <md-input-container class="md-icon-float md-block align-center zero-padding" >
+                <md-button class="md-raised custom-height-button md-primary" ng-click="doLogin(userLoginForm.$valid)" style="height: 30px; line-height: 25px; font-size: 10px; width: 90%;">Login</md-button>
+              </md-input-container>
+            </form>
+          </div>
+        </ion-item>
+        <md-input-container class="md-icon-float md-block align-center" ng-if="!isMemberLogin && !loginStatus">
+          <md-button class="md-raised custom-height-button md-primary" ng-click="toggleMemberLoginForm()" style="height: 30px; line-height: 25px; font-size: 10px; width: 90%;">Member Login</md-button>
+        </md-input-container>
+        <md-input-container class="md-icon-float md-block align-center" ng-if="!loginStatus">
+          <md-button class="md-raised custom-height-button md-primary" ng-click="memberDelivery()" style="height: 25px; line-height: 25px; font-size: 10px; width: 90%; background-color: #4caf50;">Checkout as Guest</md-button>
+        </md-input-container>
+        <!--<a class="button  button-positive custom-height-button side-margin-auto item-stable"-->
+                <!--ng-click="">-->
+          <!--Member Login-->
+        <!--</a>-->
+        <!--<a class="button  button-assertive custom-height-button side-margin-auto" ng-click="memberDelivery()">-->
+          <!--Checkout as Guest-->
+        <!--</a>-->
+      </ion-list>
+    </div>
+  </ion-content>
+
+</ion-view>

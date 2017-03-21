@@ -1,0 +1,36 @@
+<ion-view>
+  <ion-content style="padding-top:40px;">
+    <div style="text-align: center; padding:35px 0px;"><img class="full-width" src="img/logo.png" style="max-width: 230px;"></div>
+    <form  class="form-horizontal" role="form" name="userLoginForm" ng-if="!forgotPassword">
+      <md-input-container class="md-icon-float md-block" style="margin-top: 25px;">
+        <label>Phone Number / Email</label>
+        <md-icon class="name ion-person align-right md-primary"></md-icon>
+        <input ng-model="user.userName" type="text" style="width: 90%;" name="userName" required>
+      </md-input-container>
+      <md-input-container class="md-icon-float md-block" style="margin-top: 25px;">
+        <md-icon class="name ion-android-lock align-right md-primary"></md-icon>
+        <input ng-model="user.password" type="password" placeholder="Password" style="width: 90%;" name="password" required>
+      </md-input-container>
+      <div class="error" style="margin:1%" ng-if="errorMessage">{{errorMessage}}</div>
+      <a md-no-ink class="md-primary zero-margin font-size-10" style="text-transform:none; padding-left: 5%;" ng-click="toggleForgotPassword();">forgot your password ?</a>
+      <md-input-container class="md-icon-float md-block align-center" >
+        <md-button class="md-raised custom-height-button md-primary" ng-click="doLogin(userLoginForm.$valid)" style="height: 25px; line-height: 25px; font-size: 10px; width: 90%;">Login</md-button>
+      </md-input-container>
+      <a md-no-ink class="md-primary zero-margin font-size-10" ng-click="goToRegister();" style="text-transform:none; padding-left: 5%; margin-top: -8px !important;">doesn't have an account? Sign Up</a>
+    </form>
+    <form  class="form-horizontal" role="form" name="forgotPasswordForm" ng-if="forgotPassword">
+      <div style="text-align: center; padding:5%;">Enter your phone number that you used to register. We will send you an OTP to reset your password.</div>
+      <md-input-container class="md-icon-float md-block" style="margin-top: 5px;margin-bottom: 10px;">
+        <label>Phone Number</label>
+        <md-icon class="name ion-person align-right md-primary"></md-icon>
+        <input ng-model="forgetPasswordRequest.mobile" type="tel" style="width: 90%;" name="mobile" required>
+      </md-input-container>
+      <div class="error" style="margin:1%" ng-if="errorMessage">{{errorMessage}}</div>
+      <md-input-container class="md-icon-float md-block align-center" >
+        <md-button class="md-raised custom-height-button md-primary" ng-click="requestForgotPassword(forgotPasswordForm.$valid)" style="height: 25px; line-height: 25px; font-size: 10px; width: 90%;">Submit</md-button>
+      </md-input-container>
+      <a md-no-ink class="md-primary zero-margin font-size-10" style="text-transform:none; padding-left: 5%;" ng-click="toggleForgotPassword();">back to login</a>
+    </form>
+  </ion-content>
+</ion-view>
+

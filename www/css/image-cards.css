@@ -1,0 +1,126 @@
+.card-title-shadow
+{
+  width: 100%;
+  background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.8))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%); /* IE10+ */
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#cc000000',GradientType=0 ); /* IE6-9 */
+}
+
+.text-on-image
+{
+  position: absolute;
+  z-index: 10;
+  bottom: 0px;
+  padding: 15px;
+  text-align: left;
+}
+
+.text-on-image h2
+{
+  color: #fff;
+  font-size: 1.5em !important;
+}
+
+.text-on-image h3
+{
+  color: #fff;
+  padding-left: 3px;
+  font-weight: 300;
+}
+
+
+.white-tabs
+{
+  background: #fff !important;
+  /*border-top: 1px solid #ddd !important;*/
+}
+
+.white-tabs-text
+{
+  color: #444 !important;
+}
+
+.white-tabs-text:active, .white-tabs-text:hover, .white-tabs-text:focus
+{
+  color: #111 !important;
+}
+
+
+.fab {
+  border:none;
+  font-size:1.2em;
+  color:white;
+  background-color: #F9690E;
+  /*border-radius: 50%;*/
+  width: 70px;
+  height: 35px;
+  margin: auto;
+  -webkit-box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);
+  -moz-box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);
+  box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);
+}
+
+.fab:hover {
+  background-color: #ed7f39;
+}
+
+.fab:active {
+  background-color: #c15714;
+}
+
+.fab-zone {
+  position: absolute;
+  z-index: 50;
+  right: 30px;
+  top: -17px;
+}
+
+.material-text-zone {
+  padding-top: 17px !important;
+  padding-bottom: 3px !important;
+  border-bottom-style: none;
+  /*margin-bottom: 50px !important;*/
+}
+
+.text-ellipse {
+  height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+
+/*input icon*/
+.input-icon {
+  position: relative;
+  padding-right: 10px;
+}
+
+.input-icon > i {
+  position: absolute;
+  display: block;
+  transform: translate(0, -50%);
+  top: 50%;
+  pointer-events: none;
+  text-align: center;
+  font-style: normal;
+}
+
+.input-icon > input {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.input-icon-right > i {
+  right: 0;
+}
+
+.input-icon-right > input {
+  padding-left: 0;
+  padding-right: 25px;
+  text-align: right;
+}

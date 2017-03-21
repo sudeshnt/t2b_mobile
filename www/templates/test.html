@@ -1,0 +1,102 @@
+<ion-view>
+  <ion-header-bar class="bar-stable">
+    <h1 class="title">Ionic Blank Starter {{"BACK" | translate}}</h1>
+  </ion-header-bar>
+  <ion-content header-shrink scroll-event-interval="5" has-bouncing="false" ng-class="margin_top">
+    {{margin_top}}
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+      <md-button ng-click="basic()">basic</md-button>
+      <md-button md-no-ink class="md-primary" ng-click="withText()">Primary (md-noink)</md-button>
+      <md-button ng-disabled="true" class="md-primary" >Disabled</md-button>
+      <md-button class="md-warn" ng-click="success()">{{title4}}</md-button>
+      <div class="label" ng-click="confirm_with_success()">Flat</div>
+    </section>
+    {{margin_top}} adsa
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+      <md-button class="md-raised" ng-click="alert_with_custom_icon()">Button</md-button>
+      <md-button class="md-raised md-primary" ng-click="warning_with_confirm()">Primary</md-button>
+      <md-button ng-disabled="true" class="md-raised md-primary">Disabled</md-button>
+      <md-button class="md-raised md-warn">Warn</md-button>
+      <div class="label">Raised</div>
+    </section>
+
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+      <md-button class="md-fab" aria-label="Eat cake">
+        <md-icon md-svg-src="img/icons/android.svg"></md-icon>
+      </md-button>
+
+      <md-button class="md-fab md-primary" aria-label="Use Android">
+        <md-icon md-svg-src="img/icons/android.svg"></md-icon>
+      </md-button>
+
+      <md-button class="md-fab" ng-disabled="true" aria-label="Comment">
+        <md-icon md-svg-src="img/icons/android.svg"></md-icon>
+      </md-button>
+
+      <md-button class="md-fab md-primary md-hue-2" aria-label="Profile">
+        <md-icon md-svg-src="img/icons/android.svg"></md-icon>
+      </md-button>
+
+      <md-button class="md-fab md-mini" aria-label="Eat cake">
+        <md-icon md-svg-src="img/icons/android.svg"></md-icon>
+      </md-button>
+
+      <md-button class="md-fab md-mini md-primary" aria-label="Use Android">
+        <md-icon md-svg-src="img/icons/android.svg" style="color: greenyellow;"></md-icon>
+      </md-button>
+      <div class="label">FAB</div>
+    </section>
+
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+      <md-button ng-href="{{googleUrl}}" target="_blank">Default Link</md-button>
+      <md-button class="md-primary" ng-href="{{googleUrl}}" target="_blank">Primary Link</md-button>
+
+      <md-button>Default Button</md-button>
+      <div class="label">Link vs. Button</div>
+    </section>
+
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+      <md-button class="md-primary md-hue-1">Primary Hue 1</md-button>
+      <md-button class="md-warn md-raised md-hue-2">Warn Hue 2</md-button>
+      <md-button class="md-accent">Accent</md-button>
+      <md-button class="md-accent md-raised md-hue-1">Accent Hue 1</md-button>
+      <div class="label">Themed</div>
+    </section>
+
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+      <md-button class="md-icon-button md-primary" aria-label="Settings">
+        <md-icon md-svg-icon="img/icons/android.svg"></md-icon>
+      </md-button>
+      <md-button class="md-icon-button md-accent" aria-label="Favorite">
+        <md-icon md-svg-icon="img/icons/android.svg"></md-icon>
+      </md-button>
+      <md-button class="md-icon-button" aria-label="More">
+        <md-icon md-svg-icon="img/icons/android.svg"></md-icon>
+      </md-button>
+      <md-button href="http://google.com"
+        title="Launch Google.com in new window"
+        target="_blank"
+        ng-disabled="true"
+        aria-label="Google.com"
+        class="md-icon-button launch" >
+        <md-icon md-svg-icon="img/icons/android.svg"></md-icon>
+      </md-button>
+      <div class="label">Icon Button</div>
+    </section>
+    <!--<ion-floating-button click="myEvent()" has-footer="false" button-color="#2AC9AA" icon="ion-plus" icon-color="#fff">-->
+    <!--</ion-floating-button>-->
+
+
+  </ion-content>
+  <div class="fixed-outside">
+    <div class="row">
+      <div class="col">
+        <button class="button floating-bottom-button button-energized icon ion-log-in"></button>
+      </div>
+    </div>
+  </div>
+  <ion-floating-menu>
+    <ion-floating-item icon="ion-camera" click="myEvent()" text="asdas"></ion-floating-item>
+    <ion-floating-item icon="ion-person" click="myEvent()"></ion-floating-item>
+  </ion-floating-menu>
+</ion-view>

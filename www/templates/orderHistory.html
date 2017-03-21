@@ -1,0 +1,90 @@
+<ion-view>
+  <ion-header-bar class="bar-stable" style="height:45px !important;">
+    <!--<div style="width: 100%; display: inherit;" >-->
+      <div style="position: absolute; left: 5px; margin-top: 0px !important;">
+        <a class="button button-icon row"  ng-click="toggleSideBar()">
+          <i class="ion-navicon white" style="font-size: 30px;"></i>
+        </a>
+      </div>
+      <h3 class="side-margin-auto white"  style="margin-top: 4px !important; margin-bottom: 5px; font-size:20px;">Order History</h3>
+      <!--<div style="position: absolute; right: 5px; margin-top: 0px !important;" >-->
+        <!--<a class="button button-icon row"  ng-click="toggleSearch()">-->
+          <!--<i class="ion-ios-search-strong white" style="font-size: 30px;"></i>-->
+        <!--</a>-->
+      <!--</div>-->
+    <!--</div>-->
+  </ion-header-bar>
+  <ion-content style="margin-top:45px">
+      <div class="card row" ng-repeat="order in orderHistory">
+
+        <div class="col zero-padding" style="max-width: 100px;" ng-if="order.orders.length>=4">
+          <div class="row">
+            <div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;">
+              <img ng-src="{{order.orders[0].product.imageUrl}}" style="height:42px;">
+            </div>
+            <div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;" >
+              <img ng-src="{{order.orders[1].product.imageUrl}}"  style="height:42px;">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;">
+              <img ng-src="{{order.orders[2].product.imageUrl}}" style="height:42px;">
+            </div>
+            <div class="col image" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;">
+              <img ng-src="{{order.orders[3].product.imageUrl}}" style="height:42px;" ng-class="order.orders.length>=4?'opacity-half':''">
+              <span ng-if="order.orders.length>=4">...</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col zero-padding" style="max-width: 100px;"  ng-if="order.orders.length==3">
+          <div class="row">
+            <div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;">
+              <img ng-src="{{order.orders[0].product.imageUrl}}" style="height:40px;">
+            </div>
+            <div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;" >
+              <img ng-src="{{order.orders[1].product.imageUrl}}"  style="height:40px;">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col" style="padding: 2px; height:42px; max-width:84px; vertical-align: middle; overflow: hidden;">
+              <img ng-src="{{order.orders[2].product.imageUrl}}" style="height:84px;">
+            </div>
+          </div>
+        </div>
+
+        <div class="col zero-padding" style="max-width: 100px;"  ng-if="order.orders.length==2">
+          <div class="row">
+            <div class="col" style="padding: 2px; height:84px; max-width:42px; vertical-align: middle; overflow: hidden;">
+              <img ng-src="{{order.orders[0].product.imageUrl}}" style="height:84px;">
+            </div>
+            <div class="col" style="padding: 2px; height:84px; max-width:42px; vertical-align: middle; overflow: hidden;" >
+              <img ng-src="{{order.orders[1].product.imageUrl}}"  style="height:84px;">
+            </div>
+          </div>
+        </div>
+
+        <div class="col zero-padding" style="max-width: 100px;" ng-if="order.orders.length==1">
+          <div class="row">
+            <div class="col" style="padding: 2px; height:84px; max-width:84px; max-height:84px; vertical-align: middle; overflow: hidden;">
+              <img ng-src="{{order.orders[0].product.imageUrl}}" style="height:84px;">
+            </div>
+          </div>
+        </div>
+
+        <div class="col " style="padding: 10px 0px">
+          <div class="row zero-padding">
+            <span class="">
+              <img ng-src="{{order.organization.images[order.organization.images.length-1].imageUri}}" style="height:25px; vertical-align: middle;">
+              <span> {{order.organization.orgName}} </span> <span style="position: absolute;right: 5px;"> Rs.{{order.finalValue}} </span><br>
+              <span> {{order.orders.length}} item </span><br>
+              <span>expected time : {{order.expectedTime}}</span><br>
+              <span>channel : {{order.channel}}</span><br>
+
+            </span>
+          </div>
+        </div>
+      </div>
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,41 @@
+<ion-view>
+  <ion-content style="padding-top:40px;">
+    <div style="text-align: center; padding:35px 0px;"><img class="full-width" src="img/logo.png" style="max-width: 230px;"></div>
+    <form  class="form-horizontal" role="form" name="otpForm" ng-if="otpVerification && !resetForgotPassword">
+      <div style="text-align: center; padding:5%;">Enter OTP received in the SMS.<br>didn't receive otp ? <a ng-click="resendOTP()" md-no-ink class="md-primary zero-margin" style="text-transform:none;">resend otp</a></div>
+      <div class="row">
+        <div class="col col-20"></div>
+        <div class="col col-60">
+          <md-input-container class="md-icon-float md-block" style="margin-top: 0px; margin-bottom: 10px;">
+            <label>OTP</label>
+            <md-icon class="name ion-android-lock align-right md-primary" style="top: 12px;"></md-icon>
+            <input ng-model="verifyOtpReq.otp" type="text" style="width: 90%;" name="otp_field" required>
+          </md-input-container>
+        </div>
+        <div class="col col-20"></div>
+      </div>
+      <div class="error" style="margin:1%" ng-if="errorMessage">{{errorMessage}}</div>
+      <md-input-container class="md-icon-float md-block align-center" >
+        <md-button class="md-raised custom-height-button md-primary" ng-click="verifyOTP(otpForm.$valid)" style="height: 25px; line-height: 25px; font-size: 10px; width: 90%;">Submit</md-button>
+      </md-input-container>
+    </form>
+    <form  class="form-horizontal" role="form" name="resetForgotPasswordForm" ng-if="resetForgotPassword">
+      <div style="text-align: center; padding:5%;">Enter new Password.</div>
+      <div class="row">
+        <div class="col col-20"></div>
+        <div class="col col-60">
+          <md-input-container class="md-icon-float md-block" style="margin-top: 0px; margin-bottom: 10px;">
+            <label>Enter Password</label>
+            <md-icon class="name ion-android-lock align-right md-primary" style="top: 12px;"></md-icon>
+            <input ng-model="resetForgotPasswordReq.password" type="password" style="width: 90%;" name="password" required>
+          </md-input-container>
+        </div>
+        <div class="col col-20"></div>
+      </div>
+      <div class="error" style="margin:1%" ng-if="errorMessage">{{errorMessage}}</div>
+      <md-input-container class="md-icon-float md-block align-center" >
+        <md-button class="md-raised custom-height-button md-primary" ng-click="resetPassword(resetForgotPasswordForm.$valid)" style="height: 25px; line-height: 25px; font-size: 10px; width: 90%;">Submit</md-button>
+      </md-input-container>
+    </form>
+  </ion-content>
+</ion-view>

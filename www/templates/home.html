@@ -1,0 +1,244 @@
+<ion-view cache-view="false">
+  <ion-header-bar class="bar-stable "  ng-show="!searchEnabled">
+    <div style="width: 100%; display: inherit;" >
+      <div style="position: absolute; left: 5px;">
+        <a class="button button-icon row"  ng-click="toggleSideBar()">
+          <i class="ion-navicon white" style="font-size: 30px;"></i>
+        </a>
+      </div>
+      <div class="side-margin-auto">
+        <h3 class="side-margin-auto white"  style="margin-top: -14px; margin-bottom: 5px; font-size: 20px;">Touch2Buy</h3>
+        <md-select ng-model="weapon" placeholder="" class="md-no-underline zero-margin side-margin-auto white" style="max-width: 85px;background: #ce6e27;padding: 0px 5px;height: 28px;border-radius: 10px;">
+          <md-option selected value="axe" style="height:30px;">Food</md-option>
+          <md-option value="sword" style="height:30px;">Water</md-option>
+          <md-option value="wand" style="height:30px;">Fish</md-option>
+          <md-option value="pen" style="height:30px;">Maids</md-option>
+        </md-select>
+      </div>
+      <div style="position: absolute; right: 5px;" >
+        <a class="button button-icon row"  ng-click="toggleSearch()">
+          <i class="ion-ios-search-strong white" style="font-size: 30px;"></i>
+        </a>
+      </div>
+    </div>
+  </ion-header-bar>
+  <ion-header-bar class="bar-stable "  ng-show="searchEnabled">
+    <div style="width: 100%; display: inherit;" >
+        <md-autocomplete
+           style="width:89%; margin-top: -5px !important; "
+           ng-disabled="isDisabled"
+           md-no-cache="noCache"
+           md-selected-item="selectedItem"
+           md-search-text-change="searchTextChange(searchText)"
+           md-search-text="searchText"
+           md-selected-item-change="selectedItemChange(item)"
+           md-items="item in querySearch(searchText)"
+           md-item-text="item.display"
+           md-min-length="3"
+           placeholder="What do you want to eat?">
+        <md-item-template>
+          <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.display}}</span>
+        </md-item-template>
+        <md-not-found>
+          No states matching "{{searchText}}" were found.
+          <a ng-click="newState(searchText)">Create a new one!</a>
+        </md-not-found>
+      </md-autocomplete>
+      <div style="position: absolute; right: 5px;">
+        <a class="button button-icon row"  ng-click="toggleSearch()">
+          <i class="ion-ios-search-strong white" style="font-size: 30px;"></i>
+        </a>
+      </div>
+    </div>
+  </ion-header-bar>
+
+  <ion-content style="margin-top: 62px;">
+    <!--<div style="margin-top: 0px;">-->
+      <!--<ul rn-carousel class="image image-carousel" rn-carousel-auto-slide rn-carousel-controls rn-carousel-controls-allow-loop>-->
+        <!--<li class="align-center"><img ng-src="img/food_offers/1.jpg" style="width:100%; max-height: 148px;"></li>-->
+        <!--<li class="align-center"><img ng-src="img/food_offers/2.jpg" style="width:100%; max-height: 148px;"></li>-->
+        <!--<li class="align-center"><img ng-src="img/food_offers/3.jpg" style="width:100%; max-height: 148px;"></li>-->
+        <!--<li class="align-center"><img ng-src="img/food_offers/4.png" style="width:100%; max-height: 148px;"></li>-->
+      <!--</ul>-->
+    <!--</div>-->
+    <tab-slide-box>
+      <div class="tsb-icons" style="margin-top:5px;">
+        <div class="tsb-ic-wrp">
+          <ion-scroll direction="x" class="tsb-hscroll">
+            <a href="javascript:;" on-finish-render="test()" style="margin: 0px 18px;">
+              <img ng-src="img/categories/meal.png" style="height:60px;">
+              <br><span class="smaller-letters">full course</span>
+            </a>
+            <a href="javascript:;" on-finish-render="test()" style="margin: 0px 18px;">
+              <img ng-src="img/categories/dessert.png" style="height:60px;">
+              <br><span class="smaller-letters">desserts</span>
+            </a>
+            <a href="javascript:;" on-finish-render="test()" style="margin: 0px 18px;">
+              <img ng-src="img/categories/nonveg.png" style="height:60px;">
+              <br><span class="smaller-letters">non-veg</span>
+            </a>
+            <a href="javascript:;" on-finish-render="test()" style="margin: 0px 18px;">
+              <img ng-src="img/categories/veg.png" style="height:60px;">
+              <br><span class="smaller-letters">veg</span>
+            </a>
+            <a href="javascript:;" on-finish-render="test()" style="margin: 0px 18px;">
+              <img ng-src="img/categories/pizza.png" style="height:60px;">
+              <br><span class="smaller-letters">pizza</span>
+            </a>
+            <a href="javascript:;" on-finish-render="test()" style="margin: 0px 15px;">
+              <img ng-src="img/categories/burger.png" style="height:60px;">
+              <br><span class="smaller-letters">burgers</span>
+            </a>
+          </ion-scroll>
+        </div>
+      </div>
+      <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">
+        <ion-slide>
+          <div class="row" ng-repeat="restaurantRow in restaurants">
+            <div class="col" ng-repeat="restaurant in restaurantRow" style="max-width: 50%;">
+              <div class="list card" ng-click="goToRestaurant(restaurant)">
+                <div class="item item-image">
+                  <img ng-src="{{restaurant.imageUrl}}">
+                  <div class="text-on-image card-title-shadow">
+                    <div class="align-center">
+                      <img ng-src="{{restaurant.images[restaurant.images.length-1].imageUri}}" style="height:40px; width:auto; background-color: white; opacity:0.8;">
+                    </div>
+                    <h2 style="font-size: 18px !important;">{{restaurant.orgName}}{{restaurant.images[restaurants.images.length-1]}}</h2>
+                    <h3>{{restaurant.status}}</h3>
+                  </div>
+                </div>
+                <div class="item item-text-wrap material-text-zone">
+                  <!--<div class="fab-zone">-->
+                    <!--<button class="fab">$$$$</button>-->
+                  <!--</div>-->
+                  <p class="text-ellipse">{{restaurant.description}}</p>
+                </div>
+                <div class="row zero-padding-tb">
+                  <div class="col zero-padding-tb">
+                    <div class="item tabs tabs-secondary tabs-icon-left white-tabs">
+                      <div class="row zero-padding-tb">
+                        <div class="col zero-padding-tb align-left">
+                          <i class="ion-android-star star-active" ng-repeat="i in getNumber(restaurant.rating) track by $index"></i><i class="ion-android-star-outline star-disabled" ng-repeat="i in getNumber(5-restaurant.rating) track by $index"></i>
+                        </div>
+                        <div class="col zero-padding-tb align-right">
+                          <i class="icon ion-android-share-alt"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ion-slide>
+        <ion-slide>
+        </ion-slide>
+        <ion-slide>
+        </ion-slide>
+        <ion-slide>
+        </ion-slide>
+        <ion-slide>
+        </ion-slide>
+        <ion-slide>
+        </ion-slide>
+      </ion-slide-box>
+    </tab-slide-box>
+    <!--<div class="row" style="padding-bottom: 0px;">-->
+      <!--<ion-scroll zooming="true" direction="xy">-->
+        <!--<div  class="row zero-padding" >-->
+          <!--<div class="cat-image">-->
+            <!--<div class="align-center">-->
+              <!--<img ng-src="img/categories/5.png" style="height:100px;">-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="cat-image">-->
+            <!--<div class="align-center">-->
+              <!--<img ng-src="img/categories/1.png" style="height:100px;">-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="cat-image">-->
+            <!--<div class="align-center">-->
+              <!--<img ng-src="img/categories/2.png" style="height:100px;">-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="cat-image">-->
+            <!--<div class="align-center">-->
+              <!--<img ng-src="img/categories/3.png" style="height:100px;">-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="cat-image">-->
+            <!--<div class="align-center">-->
+              <!--<img ng-src="img/categories/4.png" style="height:100px;">-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</ion-scroll>-->
+    <!--</div>-->
+  </ion-content>
+  <!--<md-menu>-->
+  <!--<ion-floating-button click="openMenu($mdOpenMenu, $event)" has-footer="false" button-left="20px" button-color="#2AC9AA" icon="ion-android-options" icon-color="#fff">-->
+  <!--</ion-floating-button>-->
+    <!--<md-menu-content width="4">-->
+      <!--<md-menu-item>-->
+        <!--<md-button ng-click="">-->
+          <!--<img ng-src="img/sort/1.png" style="width:20px">-->
+          <!--Price Low to High-->
+        <!--</md-button>-->
+      <!--</md-menu-item>-->
+      <!--<md-menu-item>-->
+        <!--<md-button ng-click="">-->
+          <!--<img ng-src="img/sort/2.png" style="width:20px">-->
+          <!--Price High to Low-->
+        <!--</md-button>-->
+      <!--</md-menu-item>-->
+    <!--</md-menu-content>-->
+  <!--</md-menu>-->
+  <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="right">
+    <!--<md-toolbar class="md-theme-light sidenav-header">-->
+      <!--<h1 class="md-toolbar-tools white">Touch2Buy</h1>-->
+    <!--</md-toolbar>-->
+    <md-content >
+      <img ng-src="img/food_slider/4.jpg" style="width:100%">
+      <md-list flex>
+        <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;" ng-if="!loginStatus">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="goToLogin()">
+            <h4><i class="ion-log-in"></i> Login</h4>
+          </div>
+        </md-list-item>
+        <!--<md-divider ></md-divider>-->
+        <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;" ng-if="!loginStatus">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="goToRegistration()">
+            <h4><i class="ion-person-add"></i> Register</h4>
+          </div>
+        </md-list-item>
+        <!--<md-divider ></md-divider>-->
+        <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;" ng-if="loginStatus">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="goToOrderHistory()">
+            <h4><i class="ion-document-text"></i> Order History</h4>
+          </div>
+        </md-list-item>
+        <!--<md-divider ></md-divider>-->
+        <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;" ng-if="loginStatus">
+          <div class="md-list-item-text zero-margin" layout="column">
+            <h4><i class="ion-ios-compose"></i> Edit Profile</h4>
+          </div>
+        </md-list-item>
+        <!--<md-divider ></md-divider>-->
+        <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;">
+          <div class="md-list-item-text zero-margin" layout="column">
+            <h4><i class="ion-information-circled"></i> About us</h4>
+          </div>
+        </md-list-item>
+        <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;" ng-if="loginStatus">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="logOut()">
+            <h4 ><i class="ion-log-out"></i> Log Out</h4>
+          </div>
+        </md-list-item>
+        <!--<md-divider ></md-divider>-->
+      </md-list>
+      <!--<md-button ng-click="close()" class="md-primary">-->
+        <!--Close Sidenav Right-->
+      <!--</md-button>-->
+    </md-content>
+  </md-sidenav>
+</ion-view>
